@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+.navbar-brand{
+	padding-top: 2px;
+}
+
+.panel-default{
+	margin-left:20px;
+	margin-right:20px;
+}
+
+.alert{
+	margin-left:20px;
+	margin-right:20px;
+}
+
+
