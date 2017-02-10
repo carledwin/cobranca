@@ -21,6 +21,11 @@ public class TituloController {
 	@Autowired 
 	private Titulos titulos;
 	
+	@RequestMapping
+	public String pesquisasr(){
+		return "PesquisaTitulos";
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView salvar(Titulo titulo){
 		titulos.save(titulo);
