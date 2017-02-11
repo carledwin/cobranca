@@ -24,7 +24,9 @@ public class TituloController {
 	
 	private static final String CADASTRO_TITULO_VIEW = "CadastroTitulo";
 	private static final String MSG_TITULO_SALVO_COM_SUCESSO = "Título salvo com sucesso!";
+	private static final String MSG_TITULO_EXCLUIDO_COM_SUCESSO = "Título excluido com sucesso!";
 	private static final String PESQUISA_TITULOS_VIEW = "PesquisaTitulos";
+	private static final String REDIRECT_TITULOS = "redirect:/titulos";
 	private static final String REDIRECT_TITULOS_NOVO = "redirect:/titulos/novo";
 	private static final String URL_NOVO = "/novo";
 	public static final String URL_TITULOS = "/titulos";
@@ -38,6 +40,13 @@ public class TituloController {
 		ModelAndView mv = new ModelAndView(PESQUISA_TITULOS_VIEW);
 		mv.addObject(VAR_TITULOS, titulos.findAll());
 		return mv;
+	}
+	
+	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes){
+		titulos.delete(codigo);
+		attributes.addFlashAttribute(VAR_MENSAGEM, MSG_TITULO_EXCLUIDO_COM_SUCESSO);
+		return REDIRECT_TITULOS;
 	}
 	
 	@RequestMapping("{codigo}")
@@ -54,7 +63,7 @@ public class TituloController {
 		}
 		titulos.save(titulo);
 		attributes.addFlashAttribute(VAR_MENSAGEM,MSG_TITULO_SALVO_COM_SUCESSO);
-		return REDIRECT_TITULOS_NOVO;
+		return REDIRECT_TITULOS;
 	}
 
 	@RequestMapping(URL_NOVO)
