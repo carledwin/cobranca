@@ -22,22 +22,24 @@ public class TituloController {
 	private Titulos titulos;
 	
 	@RequestMapping
-	public String pesquisasr(){
-		return "PesquisaTitulos";
+	public ModelAndView pesquisasr(){
+		ModelAndView mv = new ModelAndView("PesquisaTitulos");
+		mv.addObject("titulos", titulos.findAll());
+		return mv;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView salvar(Titulo titulo){
 		titulos.save(titulo);
-		ModelAndView mvn = new ModelAndView("CadastroTitulo");
-		mvn.addObject("mensagem","Título salvo com sucesso!");
-		return mvn;
+		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		mv.addObject("mensagem","Título salvo com sucesso!");
+		return mv;
 	}
 
 	@RequestMapping("/novo")
 	public ModelAndView novo(){
-		ModelAndView mvn = new ModelAndView("CadastroTitulo");
-		return mvn;
+		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		return mv;
 	}
 	
 	@ModelAttribute
