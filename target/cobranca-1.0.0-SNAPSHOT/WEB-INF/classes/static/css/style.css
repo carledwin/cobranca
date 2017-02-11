@@ -2,6 +2,9 @@
 .navbar-brand{
 	padding-top: 2px;
 }
+body{
+	background-color: #555;
+}
 
 .panel-default{
 	margin-left:20px;
@@ -13,4 +16,13 @@
 	margin-right:20px;
 }
 
+.cw-link-panel{
+	float:right;
+	padding:0px;
+}
+
+.cw-titulo-panel{
+	float:left;
+	padding-top:2px:
+}
 

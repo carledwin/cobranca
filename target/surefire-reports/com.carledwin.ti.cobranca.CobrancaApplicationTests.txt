@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.carledwin.ti.cobranca.CobrancaApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.587 sec - in com.carledwin.ti.cobranca.CobrancaApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.832 sec - in com.carledwin.ti.cobranca.CobrancaApplicationTests

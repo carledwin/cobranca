@@ -1,6 +1,6 @@
 com\carledwin\ti\cobranca\repository\Titulos.class
 com\carledwin\ti\cobranca\CobrancaApplication.class
-com\carledwin\ti\cobranca\ServletInitializer.class
 com\carledwin\ti\cobranca\model\StatusTitulo.class
 com\carledwin\ti\cobranca\model\Titulo.class
 com\carledwin\ti\cobranca\controller\TituloController.class
+com\carledwin\ti\cobranca\ServletInitializer.class
