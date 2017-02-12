@@ -40,7 +40,7 @@ public class TituloController {
 	private CadastroTituloService cadastroTitulosService;
 	
 	@RequestMapping
-	public ModelAndView pesquisasr(@ModelAttribute("filter") TituloFilter filter){
+	public ModelAndView pesquisas(@ModelAttribute("filter") TituloFilter filter){
 		ModelAndView mv = new ModelAndView(PESQUISA_TITULOS_VIEW);
 		
 		mv.addObject(VAR_TITULOS, cadastroTitulosService.findByFilter(filter));
@@ -69,7 +69,7 @@ public class TituloController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes){
 		if(errors.hasErrors()){
-			return PESQUISA_TITULOS_VIEW;
+			return CADASTRO_TITULO_VIEW;
 		}
 		try{
 			cadastroTitulosService.save(titulo);
