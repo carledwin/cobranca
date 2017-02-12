@@ -21,6 +21,21 @@
 			</div>
 			
 			<div class="panel-body">
+			
+			<form action="/titulos" method="GET" class="form-horizontal" th:object="${filter}">
+				<div class="form-group">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input th:field="*{descricao}" class="form-control" placeholder="Qual título você está procurando" autofocus="autofocus"></input>
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -58,6 +73,7 @@
 						</tr>
 					</tbody>
 				</table>
+				</form>
 			</div>
 			
 			<div layout:include="DialogoConfirmacaoExclusao"></div>

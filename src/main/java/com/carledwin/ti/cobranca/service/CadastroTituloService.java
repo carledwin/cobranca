@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.carledwin.ti.cobranca.model.StatusTitulo;
 import com.carledwin.ti.cobranca.model.Titulo;
 import com.carledwin.ti.cobranca.repository.Titulos;
+import com.carledwin.ti.cobranca.repository.filter.TituloFilter;
 
 @Service
 public class CadastroTituloService {
@@ -35,9 +36,15 @@ public class CadastroTituloService {
 		titulos.delete(codigo);
 	}
 	
+	public List<Titulo> findByFilter(TituloFilter filter){
+		String descricao = filter.getDescricao() == null ? "%" : filter.getDescricao();
+		return titulos.findByDescricaoContainingOrderByDescricaoAsc(descricao);
+	}
+
 	public List<Titulo> findAll(){
 		return titulos.findAll();
 	}
+
 	
 	public Titulos getTitulos() {
 		return titulos;

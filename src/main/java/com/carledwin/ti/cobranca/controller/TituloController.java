@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.carledwin.ti.cobranca.model.StatusTitulo;
 import com.carledwin.ti.cobranca.model.Titulo;
+import com.carledwin.ti.cobranca.repository.filter.TituloFilter;
 import com.carledwin.ti.cobranca.service.CadastroTituloService;
 
 @Controller
@@ -38,9 +40,10 @@ public class TituloController {
 	private CadastroTituloService cadastroTitulosService;
 	
 	@RequestMapping
-	public ModelAndView pesquisasr(){
+	public ModelAndView pesquisasr(@ModelAttribute("filter") TituloFilter filter){
 		ModelAndView mv = new ModelAndView(PESQUISA_TITULOS_VIEW);
-		mv.addObject(VAR_TITULOS, cadastroTitulosService.findAll());
+		
+		mv.addObject(VAR_TITULOS, cadastroTitulosService.findByFilter(filter));
 		return mv;
 	}
 	
