@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -12,12 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.carledwin.ti.cobranca.model.StatusTitulo;
 import com.carledwin.ti.cobranca.model.Titulo;
-import com.carledwin.ti.cobranca.repository.Titulos;
+import com.carledwin.ti.cobranca.service.CadastroTituloService;
 
 @Controller
 @RequestMapping(TituloController.URL_TITULOS)
@@ -33,19 +33,25 @@ public class TituloController {
 	public static final String URL_TITULOS = "/titulos";
 	private static final String VAR_MENSAGEM = "mensagem";
 	private static final String VAR_TITULOS = "titulos";
-	@Autowired 
-	private Titulos titulos;
+	
+	@Autowired
+	private CadastroTituloService cadastroTitulosService;
 	
 	@RequestMapping
 	public ModelAndView pesquisasr(){
 		ModelAndView mv = new ModelAndView(PESQUISA_TITULOS_VIEW);
-		mv.addObject(VAR_TITULOS, titulos.findAll());
+		mv.addObject(VAR_TITULOS, cadastroTitulosService.findAll());
 		return mv;
+	}
+	
+	@RequestMapping(value="/{codigo}/receber", method = RequestMethod.PUT)
+	public @ResponseBody String receber(@PathVariable Long codigo){
+		return cadastroTitulosService.receber(codigo);
 	}
 	
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes){
-		titulos.delete(codigo);
+		cadastroTitulosService.delete(codigo);
 		attributes.addFlashAttribute(VAR_MENSAGEM, MSG_TITULO_EXCLUIDO_COM_SUCESSO);
 		return REDIRECT_TITULOS;
 	}
@@ -63,11 +69,11 @@ public class TituloController {
 			return PESQUISA_TITULOS_VIEW;
 		}
 		try{
-			titulos.save(titulo);
+			cadastroTitulosService.save(titulo);
 			attributes.addFlashAttribute(VAR_MENSAGEM,MSG_TITULO_SALVO_COM_SUCESSO);
 			return REDIRECT_TITULOS;
-		}catch(DataIntegrityViolationException e){
-			errors.reject("dataVencimento", null, "Formato de data inválido.");
+		}catch(IllegalArgumentException e){
+			errors.reject("dataVencimento", null, e.getMessage());
 			return CADASTRO_TITULO_VIEW;
 		}
 	}
