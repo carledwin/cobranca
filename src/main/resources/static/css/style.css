@@ -1,4 +1,18 @@
 @CHARSET "ISO-8859-1";
+/*Tela grande*/
+@media(min-width:768px){
+	.panel-default{
+		margin-left:20px;
+		margin-right:20px;
+	}
+	.alert{
+		margin-left:20px;
+		margin-right:20px;
+	}
+}
+
+
+
 .navbar-brand{
 	padding-top: 2px;
 }
@@ -6,15 +20,7 @@ body{
 	background-color: #555;
 }
 
-.panel-default{
-	margin-left:20px;
-	margin-right:20px;
-}
 
-.alert{
-	margin-left:20px;
-	margin-right:20px;
-}
 
 .cw-link-panel{
 	float:right;
