@@ -8,5 +8,5 @@ import com.carledwin.ti.cobranca.model.Titulo;
 
 public interface Titulos extends JpaRepository<Titulo, Long> {
 
-	public List<Titulo> findByDescricaoContainingOrderByDescricaoAsc(String descricao);
+	public List<Titulo> findByDescricaoContainingIgnoreCaseOrderByDescricaoAsc(String descricao);
 }
