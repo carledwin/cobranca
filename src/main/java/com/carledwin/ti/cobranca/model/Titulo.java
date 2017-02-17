@@ -24,7 +24,7 @@ import org.springframework.format.annotation.NumberFormat;
 public class Titulo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long codigo;
 	
 	@NotEmpty(message="Descrição é obrigatório.")
