@@ -38,7 +38,7 @@ public class CadastroTituloService {
 	
 	public List<Titulo> findByFilter(TituloFilter filter){
 		String descricao = filter.getDescricao() == null ? "%" : filter.getDescricao();
-		return titulos.findByDescricaoContainingOrderByDescricaoAsc(descricao);
+		return titulos.findByDescricaoContainingIgnoreCaseOrderByDescricaoAsc(descricao);
 	}
 
 	public List<Titulo> findAll(){
