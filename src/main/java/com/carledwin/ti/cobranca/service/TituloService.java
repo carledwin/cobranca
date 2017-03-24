@@ -12,7 +12,7 @@ import com.carledwin.ti.cobranca.repository.Titulos;
 import com.carledwin.ti.cobranca.repository.filter.TituloFilter;
 
 @Service
-public class CadastroTituloService {
+public class TituloService {
 
 	@Autowired
 	private Titulos titulos;

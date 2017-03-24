@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="LayoutPadrao">
+
+	<head>
+		<title>Pesquisa de usuários</title>
+	</head>
+
+	<section layout:fragment="conteudo">
+	
+	<div layout:include="Mensagens"></div>
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title cw-usuario-panel">Pesquisa de usuarios</h1>
+					<a class="btn btn-link cw-link-panel" th:href="@{/usuarios/novo}">Novo usuário</a>
+				</div>
+			</div>
+			
+			<div class="panel-body">
+			
+			<form th:action="@{/usuarios}" method="GET" class="form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input class="form-control" placeholder="Qual título você está procurando" autofocus="autofocus"></input>
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th class="text-center col-md-1">#</th>
+									<th>Nome</th>
+									<th class="text-center col-md-2">Login</th>
+									<th class="text-center col-md-2">Status</th>
+									<th class="col-md-1"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="usuario :${usuarios}">
+									<td class="text-center" th:text="${usuario.codigo}"></td>
+									<td th:text="${usuario.nome}"></td>
+									<td class="text-center" th:text="${usuario.login}"></td>
+									<td class="text-right" th:text="|R$ ${usuario.status}"></td>
+								</tr>
+								<tr>
+									<td colspan="6" th:if="${#lists.isEmpty(usuarios)}">Nenhum título foi encontrado.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</section>
+</html>

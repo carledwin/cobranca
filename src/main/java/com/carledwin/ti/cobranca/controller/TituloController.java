@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.carledwin.ti.cobranca.model.StatusTitulo;
 import com.carledwin.ti.cobranca.model.Titulo;
 import com.carledwin.ti.cobranca.repository.filter.TituloFilter;
-import com.carledwin.ti.cobranca.service.CadastroTituloService;
+import com.carledwin.ti.cobranca.service.TituloService;
 
 @Controller
 @RequestMapping(TituloController.URL_TITULOS)
@@ -37,7 +37,7 @@ public class TituloController {
 	private static final String VAR_TITULOS = "titulos";
 	
 	@Autowired
-	private CadastroTituloService cadastroTitulosService;
+	private TituloService cadastroTitulosService;
 	
 	@RequestMapping
 	public ModelAndView pesquisas(@ModelAttribute("filter") TituloFilter filter){
