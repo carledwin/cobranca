@@ -13,8 +13,11 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
+					.antMatchers("/titulos").authenticated()	
+					.antMatchers("/adminstradores/**").hasRole("ADM")
+					.antMatchers("/usuarios/**").hasRole("USER")
 					.antMatchers("/css/**", "/index").permitAll()
-					.antMatchers("/user/**").hasRole("USER")
+					.antMatchers("/login").permitAll()
 					.and()
 				.formLogin().loginPage("/login").failureUrl("/error");
 	}
@@ -25,7 +28,9 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter{
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()
-				.withUser("user").password("password").roles("USER");
+				.withUser("user").password("user").roles("USER")
+				.and()
+				.withUser("adm").password("adm").roles("ADM");
 	}
 	
 }
