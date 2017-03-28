@@ -34,6 +34,7 @@ public class DespesaController {
 	public static final String URL_DESPESAS = "/despesas";
 	private static final String VAR_MENSAGEM = "mensagem";
 	private static final String VAR_DESPESAS = "despesas";
+	private static final String MSG_DESPESA_PAGA_COM_SUCESSO = "Despesa paga com sucesso!";
 	
 	@Autowired
 	private DespesaService service;
@@ -46,15 +47,15 @@ public class DespesaController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/{id}/receber", method = RequestMethod.PUT)
-	public @ResponseBody String receber(@PathVariable Long id){
+	@RequestMapping(value="/{id}/pagar", method = RequestMethod.PUT)
+	public @ResponseBody String pagar(@PathVariable Long id, RedirectAttributes attributes){
+		attributes.addFlashAttribute(VAR_MENSAGEM, MSG_DESPESA_PAGA_COM_SUCESSO);
 		return service.pagar(id);
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable Long id, RedirectAttributes attributes){
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long id){
 		service.delete(id);
-		attributes.addFlashAttribute(VAR_MENSAGEM, MSG_DESPESA_EXCLUIDA_COM_SUCESSO);
 		return REDIRECT_DESPESAS;
 	}
 	

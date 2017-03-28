@@ -54,16 +54,16 @@
 									<td class="text-center" th:text="${{despesa.dataVencimento}}"></td>
 									<td class="text-right" th:text="|R$ ${{despesa.valor}}"></td>
 									<td class="text-center" th:attr="data-role=${despesa.id}">
-										<span class="label" th:text="${despesa.status.descricao}" th:classappend="${despesa.status == 'VENCIDA' ? 'label-danger' : 'label-success'}">Success</span>
+										<span class="label" th:text="${despesa.status}" th:classappend="${despesa.vencida ? 'label-danger' : 'label-success'}">Success</span>
 									</td>
 									<td class="text-center">
 										<a class="btn btn-link btn-xs" th:href="@{/despesas/{id}(id=${despesa.id})}" title="Editar" rel="tooltip" data-placement="top">
 											<span class="glyphicon glyphicon-pencil"></span>
 										</a>
-										<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#dialogoConfirmacaoExclusaoModal" th:attr="data-id=${despesa.id}, data-descricao=${despesa.descricao}" title="Excluir" rel="tooltip" data-placement="top">
+										<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#dialogoConfirmacaoExclusaoDespesaModal" th:attr="data-id=${despesa.id}, data-descricao=${despesa.descricao}" title="Excluir" rel="tooltip" data-placement="top">
 											<span class="glyphicon glyphicon-remove"></span>
 										</a>
-										<a class="btn btn-link btn-xs js-atualizar-status" th:attr="data-id=${despesa.id}" th:href="@{/despesas/{id}/receber(id=${despesa.id})}" th:if="${despesa.status == 'VENCIDA'}" title="Receber" rel="tooltip" data-placement="top">
+										<a class="btn btn-link btn-xs js-atualizar-status" th:attr="data-id=${despesa.id}" th:href="@{/despesas/{id}/pagar(id=${despesa.id})}" th:if="${!despesa.paga}" title="Pagar" rel="tooltip" data-placement="top">
 											<span class="glyphicon glyphicon-check"></span>
 										</a>
 									</td>
@@ -77,7 +77,7 @@
 				</form>
 			</div>
 			
-			<div layout:include="DialogoConfirmacaoExclusao"></div>
+			<div layout:include="DialogoConfirmacaoExclusaoDespesa"></div>
 		</div>
 	</section>
 </html>

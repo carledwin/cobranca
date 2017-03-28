@@ -20,8 +20,13 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter{
 					.antMatchers("/css/**", "/index").permitAll()
 					.antMatchers("/login").permitAll()
 					.antMatchers("/h2-console").permitAll()
-					.and()
-				.formLogin().loginPage("/login").failureUrl("/error");
+				.and()
+					.formLogin()
+						.loginPage("/login")
+						.failureUrl("/error")
+				.and()
+					.logout()
+						.logoutSuccessUrl("/login")	;
 	}
 	// @formatter:on
 

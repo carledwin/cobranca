@@ -57,6 +57,18 @@ public class Despesa {
 	
 	@Enumerated(EnumType.STRING)
 	private StatusDespesa status;
+	
+	public boolean isVencida(){
+		return StatusDespesa.VENCIDA.equals(this.status);
+	}
+	
+	public boolean isPaga(){
+		return StatusDespesa.PAGA.equals(this.status);
+	}
+	
+	public boolean isAVencer(){
+		return StatusDespesa.A_VENCER.equals(this.status);
+	}
 
 	public Long getId() {
 		return id;
