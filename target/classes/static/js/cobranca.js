@@ -1,7 +1,7 @@
 $('#dialogoConfirmacaoExclusaoModal').on('show.bs.modal', function(event){
 	
 	var button = $(event.relatedTarget);
-	var codigoTitulo = button.data('codigo');
+	var codigoTitulo = button.data('id');
 	var descricaoTitulo = button.data('descricao');
 	
 	var modal = $(this);
@@ -30,7 +30,7 @@ $(function(){
 		});
 		
 		response.done(function(e){
-			var codigoTitulo = botaoReceber.data('codigo');
+			var codigoTitulo = botaoReceber.data('id');
 			$('[data-role=' + codigoTitulo + ']').html('<span class="label label-success">'+e+'</span>');
 			botaoReceber.hide();
 		})

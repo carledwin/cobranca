@@ -16,10 +16,24 @@
 <body>
 
 	<header layout:include="Cabecalho"></header>
-
-	<section layout:fragment="conteudo">
-		<p>Conteúdo principal</p>
+	
+	<section>
+		<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Cadastros
+		  <span class="caret"></span></button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+		    <li role="presentation"><a role="menuitem" th:href="@{/titulos}">Títulos</a></li>
+		    <li role="presentation"><a role="menuitem" th:href="@{/usuarios}">Usuários</a></li>
+		    <li role="presentation"><a role="menuitem" th:href="@{/administradores}">Administradores</a></li>
+		    <li role="presentation"><a role="menuitem" th:href="@{/despesas}">Despesas</a></li>
+		    <li role="presentation" class="divider"></li>
+		    <li role="presentation"><a role="menuitem" th:href="@{/about}">About Us</a></li>
+		  </ul>
+		</div>
 	</section>
+	<main layout:fragment="conteudo">
+		<p>Conteúdo principal</p>
+	</main>
 	
 
 	<script th:src="@{/js/jquery-2.1.4.min.js}"></script>

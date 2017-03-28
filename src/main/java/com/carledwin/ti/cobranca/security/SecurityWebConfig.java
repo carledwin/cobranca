@@ -13,11 +13,13 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-					.antMatchers("/titulos").authenticated()	
+					.antMatchers("/titulos/**").authenticated()
 					.antMatchers("/adminstradores/**").hasRole("ADM")
+					.antMatchers("/despesas/**").hasRole("ADM")
 					.antMatchers("/usuarios/**").hasRole("USER")
 					.antMatchers("/css/**", "/index").permitAll()
 					.antMatchers("/login").permitAll()
+					.antMatchers("/h2-console").permitAll()
 					.and()
 				.formLogin().loginPage("/login").failureUrl("/error");
 	}
